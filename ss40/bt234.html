@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bt2</title>
+</head>
+<body>
+    <input type="text" placeholder="Nhap ten cau thu">
+    <button>Them cau thu</button>
+    <br>
+    <input type="text" placeholder="Nhap id cau thu" id="del_input">
+    <button id="del_btn">Xoa cau thu</button>
+    <p>Cac cau thu duoc in qua console</p>
+    <script>
+        let btn=document.querySelector("button");
+        let input=document.querySelector("input");
+        let del_btn=document.getElementById("del_btn");
+        let del_input=document.getElementById("del_input");
+        let id=0;
+        let listPerson=[];   
+        btn.addEventListener("click",function(){
+            id++;
+            let player={id: id,name: input.value};
+            localStorage.setItem(`soluongcauthu`,JSON.stringify(id))
+            localStorage.setItem(`${id}`,JSON.stringify(player));
+            console.log(player);
+        });
+        render();
+        function render() { 
+            id=JSON.parse(localStorage.getItem(`soluongcauthu`));
+            if (id==null) {
+                id=0;
+            }
+            for (let i = 1; i <= id; i++) {
+                let player=JSON.parse(localStorage.getItem(`${i}`));
+                console.log(player);
+            }
+            }
+            
+        del_btn.addEventListener("click",function(){
+            localStorage.removeItem(`${del_input.value}`);
+        });
+    </script>
+</body>
+</html>

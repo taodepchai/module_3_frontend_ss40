@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bt5</title>
+    <style>
+        body>div{
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <label for="">Full name</label>
+        <input type="text">
+        <label for="">Age</label>
+        <input type="text">
+        <label for="">Email</label>
+        <input type="email">
+        <label for="">Phone number</label>
+        <input type="number">
+        <div>
+            <button>Lưu</button>
+        </div>
+    </div>
+    <script>
+        let input=document.querySelectorAll("input");
+        let btn=document.querySelector("button");
+        let listUsers=[];
+        console.log(input[1]);
+        btn.addEventListener("click",function(){
+            listUsers=JSON.parse(localStorage.getItem("users"));
+            if (listUsers==null) {
+                listUsers=[];
+            }
+            let users={Name: input[0].value,Age: input[1].value,Email: input[2].value,Phone: input[3].value};
+            listUsers.push(users);
+            localStorage.setItem(`users`,JSON.stringify(listUsers));
+        });
+    </script>
+</body>
+</html>
